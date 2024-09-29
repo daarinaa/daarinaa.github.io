@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.wrapper {
+    background-color: white;
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+.fixed {
+    position: fixed;
+    top: 54px;
+    left: 54px;
+    z-index: 2;
+    
+}
+
+.container {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 20px 0;
+    font-size: 24px;
+    color: black;
+}
+
+header nav {
+    float: center;
+    width: 50%;
+    margin-left: 221px;
+    margin-top: 248px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    position: relative;
+}
+
+header nav ul li {
+    display: inline-block;
+}
+
+header nav ul li a {
+    color: black
+}
+
+header nav ul li a:hover {
+    border-bottom: 1px solid black;
+}
+
+.hero {
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero--info {
+    padding-top: 52px;
+    margin-left: 221px;
+    font-size: 24px;
+}
+
+.hero--info h1 {
+    color: black;
+    font-size: 96px;
+    font-weight: 400;
+}
+
+.hero--info h3 {
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.hero--info h2 {
+    color: black;
+    font-size: 48px;
+    font-weight: 600;
+    width: 335px;
+}
+
+.hero--info h4 {
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+/*    transform: rotate(270deg);*/
+}
+
+.hero--info h5 {
+    color: black;
+    font-size: 13px;
+    font-weight: 400;
+/*    transform: rotate(270deg);*/
+}
+
+.hero--info ul {
+    list-style: none;
+    display: flex;
+}
+
+.hero--info ul li {
+    display: inline-block;
+    color: black;
+    background: white;
+    border-radius: 21px;
+    border: 1px solid black;
+    padding: 18px 15px;
+}
