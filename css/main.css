@@ -14,7 +14,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: white;
+    color: black;
     overflow-x: hidden;
 }
 
@@ -23,7 +23,7 @@ a {
 }
 
 .wrapper {
-    background-color: black;
+    background-color: white;
     width: 100%;
     position: relative;
 }
