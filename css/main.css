@@ -166,12 +166,33 @@ header nav ul li a:hover {
 
 .info {
     max-width: 100%;
-    padding: 264px 251.92px;
+    padding-left: 215px;
+    padding-top: 246px;
+}
+
+.container.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
 }
 
 .container.about .info {
     position: relative;
     transform: rotate(-4.32deg);
+    width: 50%;
+    margin-right: -100px;
+    z-index: 2;
+}
+
+.container.about .skills {
+    position: relative;
+    transform: rotate(7.2deg);
+    width: 50%;
+    margin-left: -100px;
+    margin-top: 400px;
+    z-index: 1;
 }
 
 .container.about .info h2,
@@ -188,21 +209,21 @@ header nav ul li a:hover {
 }
 
 .about-title {
-    top: 347px;
-    left: 306.6px;
+    top: 328.56px;
+    left: 269.68px;
     font-size: 42.89px;
     font-weight: 700;
 }
 
 .about-subtitle {
-    top: 363px;
-    left: 625px;
+    top: 344.02px;
+    left: 583.82px;
     font-size: 16.08px;
     font-weight: 400;
 }
 
 .container.about h3 {
-    left: 490px;
+    left: 453.02px;
     font-size: 17.75px;
     font-weight: 400;
     border-radius: 15.54px;
@@ -213,33 +234,24 @@ header nav ul li a:hover {
 }
 
 .about-role:nth-of-type(1) {
-    top: 490px;
+    top: 451.87px;
 }
 
 .about-role:nth-of-type(2) {
-    top: 550px;
+    top: 537.63px;
 }
 
 .about-role:nth-of-type(3) {
-    top: 610px;
+    top: 593.38px;
 }
 
 .about-description {
-    top: 723px;
-    left: 306.6px;
+    top: 701.67px;
+    left: 269.68px;
     font-size: 18.23px;
 }
 
-
-
-
-
-
-.container.about .skills {
-    position: relative;
-    transform: rotate(7.2deg);
-}
-
+/* Контейнер для навыков */
 .container.about .skills h2,
 .container.about .skills h4,
 .container.about .skills h3 {
@@ -303,7 +315,6 @@ header nav ul li a:hover {
     font-size: 38.72px;
     font-weight: 400;
 }
-
 
 .carouselImage {
     transition: transform 1s ease-in-out;
