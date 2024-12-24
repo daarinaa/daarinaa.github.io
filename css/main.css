@@ -18,8 +18,10 @@ body {
     overflow-x: hidden;
 }
 
+
 a {
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .wrapper {
@@ -45,14 +47,6 @@ a {
 .ticket2 {
     margin-left: -2px;
 }
-
-/* .ticket1:hover + .ticket2 {
-    transform: rotate(-20deg) translateX(100px) translateY(-20px);
-}
-
-.ticket1:not(:hover) + .ticket2 {
-    transform: rotate(0deg) translateX(0) translateY(0);
-} */
 
 img {
     max-width: 100%;
@@ -311,36 +305,6 @@ header nav ul li a:hover {
 }
 
 
-
-
-
-
-
-
-/* .carousel {
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.carousel img {
-    transition: transform 1s ease-in-out;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 1s ease-in-out;
-}
-
-.work-item {
-    flex: 0 0 300px;
-    margin-right: 20px;
-    background: black;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-} */
-
 .carouselImage {
     transition: transform 1s ease-in-out;
 }
@@ -399,14 +363,19 @@ header nav ul li a:hover {
     height: auto;
 }
 
-
-
-
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
 
 .fixed:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
+    animation: scaleUp 0.3s ease-in-out forwards;
 }
+
 
 .attention-heading {
     padding-top: 384px;
@@ -416,21 +385,18 @@ header nav ul li a:hover {
     font-size: 48px;
 }
 
-
-
-
 .container.contacts {
     position: relative;
     width: 100%;
-    max-width: 1355px; /* Максимальная ширина контейнера */
-    margin: 0 auto; /* Центрирование контейнера */
+    max-width: 1355px;
+    margin: 0 auto;
     padding-bottom: 415px;
     padding-top: 187px;
 }
 
 .container.contacts img {
-    width: 100%; /* Ширина изображения на всю ширину контейнера */
-    height: auto; /* Автоматическая высота для сохранения пропорций */
+    width: 100%;
+    height: auto;
     position: absolute;
     top: 0;
     left: 0;
@@ -442,8 +408,8 @@ header nav ul li a:hover {
 .container.contacts .info .contact-info {
     position: absolute;
     z-index: 2;
-    color: black; /* Цвет текста */
-    left: 179px;
+    color: black;
+    
     font-weight: 400;
 }
 
@@ -451,6 +417,7 @@ header nav ul li a:hover {
     top: 62px;
     color: black;
     font-size: 96px;
+    left: 179px;
 }
 
 .form-group {
@@ -470,31 +437,38 @@ header nav ul li a:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: calc(100% - 30px);
-    font-size: 24px; /* Настройте это значение для правильного позиционирования */
+    font-size: 24px;
 }
 
 .form-group:nth-of-type(1) {
-    top: 150px; /* Настройте это значение для позиционирования */
+    top: 233px;
     left: 50px;
+    left: 179px;
 }
 
 .form-group:nth-of-type(2) {
-    top: 220px; /* Настройте это значение для позиционирования */
-    left: 50px; /* Настройте это значение для позиционирования */
+    top: 312px;
+    left: 50px;
+    left: 179px;
 }
 
 .form-group:nth-of-type(3) {
-    top: 290px; /* Настройте это значение для позиционирования */
-    left: 50px; /* Настройте это значение для позиционирования */
+    top: 391px;
+    left: 50px;
+    left: 179px;
 }
 
 .contact-info {
-    top: 360px; /* Настройте это значение для позиционирования */
-    left: 50px; /* Настройте это значение для позиционирования */
+    top: 573px;
+    left: 203px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
 }
 
 .contact-info h3 {
-    margin: 5px 0;
+    margin: 0;
+    font-size: 16px;
 }
 
 .contact-info a {
@@ -515,9 +489,10 @@ header nav ul li a:hover {
 
 
 
+
 .container.donut {
     position: relative;
-    width: fit-content; /* Устанавливает ширину контейнера по размеру содержимого */
+    width: fit-content;
 }
 
 .container.donut img {
@@ -562,30 +537,30 @@ header nav ul li a:hover {
 }
 
 .container.donut h3:nth-of-type(1) {
-    top: 270px; /* Настройте это значение для позиционирования */
-    left: 486px; /* Настройте это значение для позиционирования */
+    top: 270px;
+    left: 486px;
     font-size: 24px;
     font-weight: 400;
 }
 
 .container.donut h3:nth-of-type(2) {
-    top: 348px; /* Настройте это значение для позиционирования */
-    left: 486px; /* Настройте это значение для позиционирования */
+    top: 348px;
+    left: 486px;
     font-size: 24px;
     font-weight: 400;
-    text-decoration: none; /* Убирает подчеркивание */
+    text-decoration: none;
     color: inherit;
 }
 
 .container.donut a {
-    text-decoration: none; /* Убирает подчеркивание */
-    color: inherit; /* Делает цвет ссылки таким же, как у окружающего текста */
+    text-decoration: none;
+    color: inherit;
 }
 
 .container.donut a:focus,
 .container.donut a:active {
-    text-decoration: none; /* Убирает подчеркивание при наведении, фокусе и активации */
-    color: inherit; /* Сохраняет цвет ссылки таким же, как у окружающего текста при наведении */
+    text-decoration: none;
+    color: inherit;
 }
 
 .container.donut a:hover {
@@ -593,8 +568,8 @@ header nav ul li a:hover {
 }
 
 .container.donut h4 {
-    top: 438px; /* Настройте это значение для позиционирования */
-    left: 400px; /* Настройте это значение для позиционирования */
+    top: 438px;
+    left: 400px;
     font-size: 24px;
     font-weight: 400;
 }
@@ -611,24 +586,20 @@ header nav ul li a:hover {
 
 
 
-
-/* Контейнер для фотографий */
 .photo-container {
     position: relative;
-    width: 300px; /* Ширина контейнера */
-    height: 600px; /* Высота контейнера */
+    width: 300px;
+    height: 600px;
     margin: 0 auto;
 }
 
-/* Обычные стили для фотографий */
 .photo {
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s ease; /* Плавная анимация */
+    transition: transform 0.6s ease;
 }
 
-/* Обычные стили для изображений */
 .photo img {
     width: 100%;
     height: 100%;
@@ -636,37 +607,65 @@ header nav ul li a:hover {
     display: block;
 }
 
-/* Стили для первой фотографии (не двигается при наведении) */
 .photo1 {
-    z-index: 3; /* Верхний слой */
+    z-index: 3;
 }
 
-/* Стили для второй фотографии (поворачивается влево и сдвигается влево) */
 .photo2 {
-    z-index: 2; /* Средний слой */
+    z-index: 2;
     left: 0;
 }
 
-/* Стили для третьей фотографии (поворачивается вправо и сдвигается вправо) */
 .photo3 {
-    z-index: 1; /* Нижний слой */
+    z-index: 1;
     right: 0;
 }
 
-/* Эффект раскрытия при наведении на контейнер */
 .photo-container:hover .photo2 {
-    transform: rotate(-11.5deg) translateX(-100px); /* Поворот влево + сдвиг влево */
+    transform: rotate(-11.5deg) translateX(-100px);
 }
 
 .photo-container:hover .photo3 {
-    transform: rotate(11.5deg) translateX(100px); /* Поворот вправо + сдвиг вправо */
+    transform: rotate(11.5deg) translateX(100px);
 }
 
-/* Если нужно, чтобы фотографии раскрывались при наведении только на первую фотографию */
-.photo1:hover ~ .photo2 {
-    transform: rotate(-11.5deg) translateX(-100px); /* Поворот влево + сдвиг влево */
+.photo-container:hover .photo2 {
+    transform: rotate(-11.5deg) translateX(-10%);
 }
 
-.photo1:hover ~ .photo3 {
-    transform: rotate(11.5deg) translateX(100px); /* Поворот вправо + сдвиг вправо */
+.photo-container:hover .photo3 {
+    transform: rotate(11.5deg) translateX(10%);
+}
+
+@media (max-width: 768px) {
+    header nav {
+        margin-left: 5%;
+        margin-top: 10%;
+    }
+
+    .hero--info {
+        margin-left: 10%;
+    }
+
+    .hero--info h1 {
+        font-size: 20vw;
+    }
+
+    .hero--info h2 {
+        font-size: 8vw;
+    }
+
+    .photo-container {
+        width: 90%;
+        height: 60vw;
+    }
+
+    .footer {
+        height: 30vh;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 5%;
+    }
 }
