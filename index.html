@@ -14,16 +14,17 @@
     <link rel="icon" href="img/logo.svg">
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="tickets-section">
-            <header class="container">
-                <a href="#"><img class="fixed" src="img/star.svg" alt=""></a>
+            <header class="container" role="banner">
+                <a href="#"><img class="fixed" src="img/star.svg" alt="Star logo"></a>
                 <div class="tickets">
-                    <img class="ticket1" src="img/ticket1.svg" alt="">
-                    <img id="ticket2" class="ticket2" src="img/ticket2.svg" alt="">
+                    <img class="ticket1" src="img/ticket1.svg" alt="Ticket 1">
+                    <img id="ticket2" class="ticket2" src="img/ticket2.svg" alt="Ticket 2">
                 </div>
-                <nav>
+                <nav aria-label="Main navigation">
                     <ul>
                         <li><a href="#about">about</a></li>
                         <li><a href="#works">works</a></li>
@@ -32,7 +33,7 @@
                     </ul>
                 </nav>
             </header>
-            <div class="hero container">
+            <div class="hero container" id="maincontent">
                 <div class="hero--info">
                     <h1 id="myTitle">portfolio</h1>
                     <ul>
@@ -48,7 +49,7 @@
         </div>
         <div class="container about" id="about">
             <div class="info">
-                <img src="img/ticket3.svg" alt="">
+                <img src="img/ticket3.svg" alt="Ticket 3">
                 <h2 class="about-title">darina<br>nigamatulina</h2>
                 <h4 class="about-subtitle">about</h4>
                 <h3 class="about-role">3d artist</h3>
@@ -57,7 +58,7 @@
                 <p class="about-description">hi! I am a graphic designer who<br>combines images, typography or 3d<br>models to create a design element.<br>I approach work with great attention<br>to detail and passion for creating a<br>beautiful and satisfying customer<br>order.<br><br>see you later!</p>
             </div>
             <div class="skills">
-                <img src="img/tick2.svg" alt="">
+                <img src="img/tick2.svg" alt="Ticket Scills">
                 <h2 class="skills-title">skills</h2>
                 <h4 class="skills-subtitle">about</h4>
                 <h3 class="skills-lvl">3d design</h3>
@@ -70,26 +71,26 @@
         </div>
         <div class="photo-container">
             <div class="photo photo1">
-                <img src="img/3d_1.svg" alt="Фото 1">
+                <img src="img/3d_1.svg" alt="3D work 1">
             </div>
             <div class="photo photo2">
-                <img src="img/3d_2.svg" alt="Фото 2">
+                <img src="img/3d_2.svg" alt="3D work 2">
             </div>
             <div class="photo photo3">
-                <img src="img/3d_3.svg" alt="Фото 3">
+                <img src="img/3d_3.svg" alt="3D work 3">
             </div>
         </div>
         <div class="container works" id="works">
-            <div class="carousel">
-                <button class="prev" onclick="rotateLeft(); moveLeft()">◀</button>
+            <div class="carousel" aria-live="polite">
+                <button class="prev" onclick="rotateLeft(); moveLeft()" aria-label="Previous">◀</button>
                 <div class="carousel-track">
                     <img class="work-item" src="img/3d_1.svg" alt="work1">
                     <img class="work-item" src="img/3d_2.svg" alt="work2">
                     <img class="work-item" src="img/3d_2.svg" alt="work3">
                 </div>
-                <button class="next" onclick="rotateRight(); moveRight()">▶</button>
+                <button class="next" onclick="rotateRight(); moveRight()" aria-label="Next">▶</button>
                 <div class="">
-                    <img id="carouselImage" src="img/carusel.svg" alt="">
+                    <img id="carouselImage" src="img/carusel.svg" alt="Carousel">
                 </div>
             </div>
         </div>
@@ -99,15 +100,15 @@
                 <h1 class="contact-title">contacts</h1>
                 <div class="form-group">
                     <label for="name">name</label>
-                    <input type="text" id="name" name="name" placeholder="*name" required>
+                    <input type="text" id="name" name="name" placeholder="*name" required aria-required="true">
                 </div>
                 <div class="form-group">
                     <label for="phone">phone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="*phone" required>
+                    <input type="tel" id="phone" name="phone" placeholder="*phone" required aria-required="true">
                 </div>
                 <div class="form-group">
                     <label for="comment">comment</label>
-                    <textarea id="comment" name="comment" placeholder="*comment" required></textarea>
+                    <textarea id="comment" name="comment" placeholder="*comment" required aria-required="true"></textarea>
                 </div>
                 <div class="contact-info">
                     <h3><a href="mailto:username@mail.ru">username@mail.ru</a></h3>
@@ -119,7 +120,7 @@
             </div>
         </div>
         <div class="container donut" id="donut">
-            <img src="img/ticket_donut.svg" alt="">
+            <img src="img/ticket_donut.svg" alt="Donut Ticket">
             <h1>donut</h1>
             <h2>donationalerts</h2>
             <h2>boosty</h2>
@@ -131,10 +132,10 @@
         <div class="container footer" id="footer">
             <header class="container">
                 <div class="tickets">
-                    <img class="ticket1" src="img/ticket1.svg" alt="">
-                    <img id="ticket2" class="ticket2" src="img/ticket2.svg" alt="">
+                    <img class="ticket1" src="img/ticket1.svg" alt="Ticket 1">
+                    <img id="ticket2" class="ticket2" src="img/ticket2.svg" alt="Ticket 2">
                 </div>
-                <nav>
+                <nav aria-label="Footer navigation">
                     <ul>
                         <li><a href="#about">about</a></li>
                         <li><a href="#works">works</a></li>
