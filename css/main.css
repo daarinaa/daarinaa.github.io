@@ -236,15 +236,19 @@ header nav ul li a:hover {
     font-size: 18.23px;
 }
 
+
+
+
+
+
 .container.about .skills {
     position: relative;
-    /* transform: rotate(7.2deg); */
+    transform: rotate(7.2deg);
 }
 
 .container.about .skills h2,
 .container.about .skills h4,
-.container.about .skills h3,
-.container.about .skills p {
+.container.about .skills h3 {
     position: absolute;
     z-index: 2;
 }
@@ -254,7 +258,66 @@ header nav ul li a:hover {
     z-index: 1;
 }
 
-.carousel {
+.skills-title {
+    top: 82.82px;
+    left: 54.86px;
+    font-size: 38.72px;
+    font-weight: 400;
+}
+
+.skills-subtitle {
+    top: 98.33px;
+    left: 370.02px;
+    font-size: 16.13px;
+    font-weight: 400;
+}
+
+.container.about .skills h3 {
+    left: 87.17px;
+    font-size: 17.81px;
+    font-weight: 400;
+    border-radius: 15.59px;
+    border: 0.74px solid black;
+    padding: 13px 12px;
+    display: inline-block;
+    justify-content: space-between;
+}
+
+.skills-lvl:nth-of-type(1) {
+    top: 158px;
+}
+
+.skills-lvl:nth-of-type(2) {
+    top: 214.05px;
+}
+
+.skills-lvl:nth-of-type(3) {
+    top: 269.98px;
+}
+
+.skills-lvl:nth-of-type(4) {
+    top: 325.92px;
+}
+
+.skills-lvl:nth-of-type(5) {
+    top: 381.85px;
+}
+
+.skills-title2 {
+    top: 460.37px;
+    left: 54.86px;
+    font-size: 38.72px;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+/* .carousel {
     align-items: center;
     justify-content: center;
     position: relative;
@@ -276,7 +339,69 @@ header nav ul li a:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+} */
+
+.carouselImage {
+    transition: transform 1s ease-in-out;
 }
+
+.container.works {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 1s ease-in-out;
+    width: 100%;
+    overflow: hidden;
+}
+
+.work-item {
+    min-width: 50%;
+    height: auto;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+#carouselImage {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
 
 .fixed:hover {
     transform: scale(1.1);
@@ -284,27 +409,264 @@ header nav ul li a:hover {
 }
 
 .attention-heading {
+    padding-top: 384px;
     color: white;
     font-weight: 400;
     text-align: center;
     font-size: 48px;
 }
 
+
+
+
 .container.contacts {
     position: relative;
-    
-}
-.container.cotacts h1,
-.container.cotacts h2,
-.container.contacts h4,
-.container.contacts h3 {
-    position: absolute;
-    z-index: 2;
-    margin-left: 205px;
-    margin-top: 248px;
+    width: 100%;
+    max-width: 1355px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    padding-bottom: 415px;
+    padding-top: 187px;
 }
 
 .container.contacts img {
+    width: 100%; /* Ширина изображения на всю ширину контейнера */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.container.contacts .info h1,
+.container.contacts .info .form-group,
+.container.contacts .info .contact-info {
+    position: absolute;
+    z-index: 2;
+    color: black; /* Цвет текста */
+    left: 179px;
+    font-weight: 400;
+}
+
+.contact-title {
+    top: 62px;
+    color: black;
+    font-size: 96px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 30px);
+    font-size: 24px; /* Настройте это значение для правильного позиционирования */
+}
+
+.form-group:nth-of-type(1) {
+    top: 150px; /* Настройте это значение для позиционирования */
+    left: 50px;
+}
+
+.form-group:nth-of-type(2) {
+    top: 220px; /* Настройте это значение для позиционирования */
+    left: 50px; /* Настройте это значение для позиционирования */
+}
+
+.form-group:nth-of-type(3) {
+    top: 290px; /* Настройте это значение для позиционирования */
+    left: 50px; /* Настройте это значение для позиционирования */
+}
+
+.contact-info {
+    top: 360px; /* Настройте это значение для позиционирования */
+    left: 50px; /* Настройте это значение для позиционирования */
+}
+
+.contact-info h3 {
+    margin: 5px 0;
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.contact-info a:hover,
+.contact-info a:focus,
+.contact-info a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+
+.container.donut {
+    position: relative;
+    width: fit-content; /* Устанавливает ширину контейнера по размеру содержимого */
+}
+
+.container.donut img {
     position: relative;
     z-index: 1;
+}
+
+.container.donut h1,
+.container.donut h2,
+.container.donut h3,
+.container.donut h4 {
+    position: absolute;
+    z-index: 2;
+}
+
+.container.donut h1 {
+    top: 99px;
+    left: 179px;
+    color: black;
+    font-size: 96px;
+    font-weight: 400;
+}
+
+.container.donut h2:nth-of-type(1) {
+    top: 252px;
+    left: 180px;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 21px;
+    border: 1px solid black;
+    padding: 18px 15px;
+}
+
+.container.donut h2:nth-of-type(2) {
+    top: 328px;
+    left: 180px;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 21px;
+    border: 1px solid black;
+    padding: 18px 15px;
+}
+
+.container.donut h3:nth-of-type(1) {
+    top: 270px; /* Настройте это значение для позиционирования */
+    left: 486px; /* Настройте это значение для позиционирования */
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.container.donut h3:nth-of-type(2) {
+    top: 348px; /* Настройте это значение для позиционирования */
+    left: 486px; /* Настройте это значение для позиционирования */
+    font-size: 24px;
+    font-weight: 400;
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit;
+}
+
+.container.donut a {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Делает цвет ссылки таким же, как у окружающего текста */
+}
+
+.container.donut a:focus,
+.container.donut a:active {
+    text-decoration: none; /* Убирает подчеркивание при наведении, фокусе и активации */
+    color: inherit; /* Сохраняет цвет ссылки таким же, как у окружающего текста при наведении */
+}
+
+.container.donut a:hover {
+    border-bottom: 1px solid black;
+}
+
+.container.donut h4 {
+    top: 438px; /* Настройте это значение для позиционирования */
+    left: 400px; /* Настройте это значение для позиционирования */
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+
+
+.footer {
+    transform: rotate(16.05deg);
+    transform-origin: center;
+    margin-top: 303px;
+    height: 440px;
+}
+
+
+
+
+/* Контейнер для фотографий */
+.photo-container {
+    position: relative;
+    width: 300px; /* Ширина контейнера */
+    height: 600px; /* Высота контейнера */
+    margin: 0 auto;
+}
+
+/* Обычные стили для фотографий */
+.photo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease; /* Плавная анимация */
+}
+
+/* Обычные стили для изображений */
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Стили для первой фотографии (не двигается при наведении) */
+.photo1 {
+    z-index: 3; /* Верхний слой */
+}
+
+/* Стили для второй фотографии (поворачивается влево и сдвигается влево) */
+.photo2 {
+    z-index: 2; /* Средний слой */
+    left: 0;
+}
+
+/* Стили для третьей фотографии (поворачивается вправо и сдвигается вправо) */
+.photo3 {
+    z-index: 1; /* Нижний слой */
+    right: 0;
+}
+
+/* Эффект раскрытия при наведении на контейнер */
+.photo-container:hover .photo2 {
+    transform: rotate(-11.5deg) translateX(-100px); /* Поворот влево + сдвиг влево */
+}
+
+.photo-container:hover .photo3 {
+    transform: rotate(11.5deg) translateX(100px); /* Поворот вправо + сдвиг вправо */
+}
+
+/* Если нужно, чтобы фотографии раскрывались при наведении только на первую фотографию */
+.photo1:hover ~ .photo2 {
+    transform: rotate(-11.5deg) translateX(-100px); /* Поворот влево + сдвиг влево */
+}
+
+.photo1:hover ~ .photo3 {
+    transform: rotate(11.5deg) translateX(100px); /* Поворот вправо + сдвиг вправо */
 }
