@@ -9,7 +9,6 @@
     <meta name="author" content="Darina Nigamatulina">
     <meta property="og:title" content="Portfolio daarinaa">
     <meta property="og:description" content="Portfolio of Darina Nigamatulina, a 3D artist, game designer, and graphic designer based in St. Petersburg">
-    <meta property="og:url" content="https://your-website.com">
     <link rel="icon" href="img/logo.svg">
     <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -68,24 +67,21 @@
                 <h2 class="skills-title2">softwares</h2>
             </div>
         </div>
-        <div class="photo-container">
-            <div class="photo photo1">
-                <img src="img/3d_1.svg" alt="3D work 1">
-            </div>
-            <div class="photo photo2">
-                <img src="img/3d_2.svg" alt="3D work 2">
-            </div>
-            <div class="photo photo3">
-                <img src="img/3d_3.svg" alt="3D work 3">
-            </div>
-        </div>
         <div class="container works" id="works">
             <div class="carousel" aria-live="polite">
                 <button class="prev" onclick="rotateLeft(); moveLeft()" aria-label="Previous">◀</button>
                 <div class="carousel-track">
-                    <img class="work-item" src="img/3d_1.svg" alt="work1">
-                    <img class="work-item" src="img/3d_2.svg" alt="work2">
-                    <img class="work-item" src="img/3d_2.svg" alt="work3">
+                    <div class="photo-container">
+                        <div class="photo photo1" id="photo1">
+                            <img src="img/3d_1.svg" alt="3D work 1">
+                        </div>
+                        <div class="photo photo2">
+                            <img src="img/3d_2.svg" alt="3D work 2">
+                        </div>
+                        <div class="photo photo3">
+                            <img src="img/3d_3.svg" alt="3D work 3">
+                        </div>
+                    </div>
                 </div>
                 <button class="next" onclick="rotateRight(); moveRight()" aria-label="Next">▶</button>
                 <div class="">
@@ -160,5 +156,6 @@
     </div>
     <script src="ticket-animation.js"></script>
     <script src="carousel.js"></script>
+    <script src="next.js"></script>
 </body>
 </html>

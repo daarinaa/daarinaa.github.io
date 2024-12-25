@@ -234,7 +234,7 @@ header nav ul li a:hover {
 }
 
 .about-role:nth-of-type(1) {
-    top: 451.87px;
+    top: 481.88px;
 }
 
 .about-role:nth-of-type(2) {
@@ -325,6 +325,7 @@ header nav ul li a:hover {
     max-width: 1200px;
     position: relative;
     overflow: hidden;
+    margin-bottom: 100px;
 }
 
 .carousel {
@@ -403,6 +404,8 @@ header nav ul li a:hover {
     margin: 0 auto;
     padding-bottom: 415px;
     padding-top: 187px;
+    margin-top: 100px;
+
 }
 
 .container.contacts img {
@@ -647,6 +650,7 @@ header nav ul li a:hover {
 .photo-container:hover .photo3 {
     transform: rotate(11.5deg) translateX(10%);
 }
+
 
 @media (max-width: 768px) {
     header nav {
