@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from 'gsap';
 
+// --- СЦЕНА ---
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
 
@@ -23,6 +24,7 @@ controls.dampingFactor = 0.05;
 controls.target.set(0, -0.5, 0);
 controls.update();
 
+// --- ОСВЕЩЕНИЕ ---
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
 scene.add(ambientLight);
 
@@ -89,6 +91,7 @@ gridHelper.material.transparent = true;
 gridHelper.material.opacity = 0.35;
 scene.add(gridHelper);
 
+// --- ПАНОРАМНЫЙ ФОН ---
 const textureLoader = new THREE.TextureLoader();
 const panoramaTexture = textureLoader.load('panorama.jpg');
 const skyGeometry = new THREE.SphereGeometry(1000, 64, 64);
@@ -99,6 +102,7 @@ const skyMaterial = new THREE.MeshBasicMaterial({
 const skySphere = new THREE.Mesh(skyGeometry, skyMaterial);
 scene.add(skySphere);
 
+// --- ПЕРЕМЕННЫЕ ---
 let currentModel = null;
 let mixer = null;
 let actions = {};
@@ -112,6 +116,7 @@ let currentSkeletonHelper = null;
 let uvCheckerActive = false;
 let originalMaterials = new Map();
 
+// --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 function countPolygonsAndVertices(model) {
     let triangles = 0, vertices = 0;
     model.traverse(child => {
@@ -150,6 +155,7 @@ function updateTechStats() {
     `;
 }
 
+// --- УПРАВЛЕНИЕ БЛЕНДШЕЙПАМИ ---
 function setMorphWeightByName(morphName, weight, duration = 0.2) {
     if (!meshesWithMorphs.length) return;
     meshesWithMorphs.forEach(mesh => {
@@ -198,6 +204,7 @@ function emotionAngry()   { setEmotionByName('angry', 1.0); }
 function emotionSad()     { setEmotionByName('sad', 1.0); }
 function emotionSurprise(){ setEmotionByName('surprise', 1.0); }
 
+// --- АВТОТЕСТ ---
 let testTimer = null;
 function autoTestBlendshapes() {
     if (testTimer) {
@@ -225,6 +232,7 @@ function autoTestBlendshapes() {
     testTimer = setTimeout(() => {}, 99999);
 }
 
+// --- АНИМАЦИИ ---
 function playAnimationByKeyword(keyword) {
     if (!mixer || !Object.keys(actions).length) return;
     const matchedName = Object.keys(actions).find(name =>
@@ -242,6 +250,7 @@ function setAnimationSpeed(speed) {
     document.getElementById('speed-val').innerText = speed.toFixed(2);
 }
 
+// --- ИНСТРУМЕНТЫ ---
 function toggleWireframe() {
     wireframeMode = !wireframeMode;
     currentModel?.traverse(child => { if (child.isMesh) child.material.wireframe = wireframeMode; });
@@ -296,6 +305,7 @@ function toggleUVChecker() {
     }
 }
 
+// --- КАМЕРА И СКРИНШОТ ---
 function resetCamera() {
     camera.position.set(0, 0.8, 4.5);
     controls.target.set(0, -0.5, 0);
@@ -309,6 +319,7 @@ function takeScreenshot() {
     link.click();
 }
 
+// --- СКАЧИВАНИЕ МОДЕЛИ ---
 function downloadCurrentModel() {
     if (currentGLBBlob) {
         const url = URL.createObjectURL(currentGLBBlob);
@@ -352,6 +363,7 @@ function clearCurrentCharacter() {
     updateTechStats();
 }
 
+// --- ЗАГРУЗКА МОДЕЛИ ---
 const loader = new GLTFLoader();
 const progressDiv = document.getElementById('loading-progress');
 function loadCharacterFromURL(url, blobForDownload = null) {
@@ -406,6 +418,7 @@ function loadCharacterFromURL(url, blobForDownload = null) {
     });
 }
 
+// --- ДОПОЛНИТЕЛЬНЫЕ БЛЕНДШЕЙПЫ ---
 function rebuildExtraMorphs() {
     const container = document.getElementById('extra-morphs-container');
     if (!container) return;
@@ -473,7 +486,27 @@ function switchCharacter() {
     currentCharacterIndex = (currentCharacterIndex + 1) % characterUrls.length;
     loadCharacterFromURL(characterUrls[currentCharacterIndex], null);
 }
+function showTutorialOnce() {
+    const tutorial = document.getElementById('tutorial');
+    const closeBtn = document.getElementById('close-tutorial');
+    if (!tutorial) return;
+    const alreadyShown = localStorage.getItem('tutorialShown');
+    if (!alreadyShown) {
+        tutorial.style.display = 'flex';
+        closeBtn.onclick = () => {
+            tutorial.style.display = 'none';
+            localStorage.setItem('tutorialShown', 'true');
+        };
+        setTimeout(() => {
+            if (tutorial.style.display === 'flex') {
+                tutorial.style.display = 'none';
+                localStorage.setItem('tutorialShown', 'true');
+            }
+        }, 10000);
+    }
+}
 
+// --- ПРИВЯЗКА UI ---
 function bindUI() {
     document.getElementById('switch-character').addEventListener('click', switchCharacter);
     setupFileUpload();
@@ -498,19 +531,8 @@ function bindUI() {
     document.getElementById('reset-camera-btn').addEventListener('click', resetCamera);
     document.getElementById('screenshot-btn').addEventListener('click', takeScreenshot);
     updateSwitchButtonText();
+    showTutorialOnce();
 }
-
-const uiPanel = document.getElementById('ui');
-const collapseBtn = document.getElementById('collapse-ui-btn');
-if (collapseBtn && uiPanel) {
-    collapseBtn.addEventListener('click', () => {
-        uiPanel.classList.toggle('collapsed');
-    });
-    if (window.innerWidth <= 768) {
-        uiPanel.classList.add('collapsed');
-    }
-}
-
 let clock = new THREE.Clock();
 function animate() {
     const delta = clock.getDelta();
@@ -523,12 +545,28 @@ animate();
 bindUI();
 loadCharacterFromURL(characterUrls[0], null);
 
+// --- СВОРАЧИВАНИЕ ЛЕВОЙ ПАНЕЛИ ---
+const uiPanel = document.getElementById('ui');
+const collapseBtn = document.getElementById('collapse-ui-btn');
+if (collapseBtn && uiPanel) {
+    collapseBtn.addEventListener('click', () => {
+        uiPanel.classList.toggle('collapsed');
+        collapseBtn.textContent = uiPanel.classList.contains('collapsed') ? '▶' : '◀';
+    });
+    uiPanel.addEventListener('click', (e) => {
+        if (uiPanel.classList.contains('collapsed') && e.target === uiPanel) {
+            uiPanel.classList.remove('collapsed');
+            collapseBtn.textContent = '◀';
+        }
+    });
+}
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+// --- СЛАЙДЕРЫ ДЛЯ ПАЙПЛАЙНА ---
 function initPipelineSliders() {
     const sliders = document.querySelectorAll('.step .slider');
     sliders.forEach(slider => {
@@ -569,3 +607,45 @@ function initPipelineSliders() {
 }
 window.addEventListener('DOMContentLoaded', initPipelineSliders);
 setTimeout(initPipelineSliders, 100);
+
+// ========== ДОПОЛНЕНИЯ ДЛЯ МОБИЛЬНОГО МЕНЮ (ТОЛЬКО UI, НЕ МЕНЯЕТ ЛОГИКУ) ==========
+function initMobileMenu() {
+    const isMobile = window.innerWidth < 768;
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const uiPanelMobile = document.getElementById('ui');
+    
+    if (!mobileBtn || !uiPanelMobile) return;
+    
+    // Удаляем старый обработчик, вешаем новый
+    const newBtn = mobileBtn.cloneNode(true);
+    mobileBtn.parentNode.replaceChild(newBtn, mobileBtn);
+    
+    newBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        uiPanelMobile.classList.toggle('open');
+    });
+    
+    // Добавляем крестик закрытия ТОЛЬКО на мобилках
+    if (isMobile) {
+        if (!uiPanelMobile.querySelector('.mobile-close-btn')) {
+            const closeDiv = document.createElement('div');
+            closeDiv.className = 'mobile-close-btn';
+            closeDiv.textContent = '✖ Закрыть';
+            closeDiv.addEventListener('click', () => {
+                uiPanelMobile.classList.remove('open');
+            });
+            uiPanelMobile.insertBefore(closeDiv, uiPanelMobile.firstChild);
+        }
+    } else {
+        const existingClose = uiPanelMobile.querySelector('.mobile-close-btn');
+        if (existingClose) existingClose.remove();
+        // На десктопе также убедимся, что панель не в "open" состоянии
+        uiPanelMobile.classList.remove('open');
+    }
+}
+
+// Запускаем при загрузке и при изменении размера окна
+window.addEventListener('DOMContentLoaded', initMobileMenu);
+window.addEventListener('resize', () => {
+    initMobileMenu();
+});

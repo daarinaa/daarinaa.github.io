@@ -1,14 +1,18 @@
+/* style.css — финальная версия с исправлениями */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
     background: #0a0a1f;
     color: #e0e0ff;
     overflow-x: hidden;
 }
+
+/* ========== НАВИГАЦИЯ ========== */
 .navbar {
     position: fixed;
     top: 0;
@@ -20,6 +24,7 @@ body {
     border-bottom: 1px solid rgba(0, 245, 255, 0.2);
     padding: 0.8rem 2rem;
 }
+
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -27,6 +32,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
 }
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -38,11 +44,13 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
+
 .logo span { background: none; color: white; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { color: #ccc; text-decoration: none; font-weight: 500; transition: 0.2s; }
 .nav-links a:hover { color: #00f5ff; text-shadow: 0 0 5px #00f5ff; }
 
+/* ========== HERO ========== */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -54,6 +62,7 @@ body {
     background: radial-gradient(circle at 20% 30%, #1a1a3a, #0a0a1f);
     position: relative;
 }
+
 .hero-content h1 {
     font-size: clamp(1.8rem, 8vw, 3.2rem);
     max-width: 900px;
@@ -65,16 +74,19 @@ body {
     color: transparent;
     animation: shimmer 6s linear infinite;
 }
+
 @keyframes shimmer {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
 .hero-content p {
     font-size: clamp(1rem, 4vw, 1.3rem);
     margin-top: 1rem;
     color: #b0b0ff;
 }
+
 .hero-badge {
     display: inline-block;
     margin-top: 1.5rem;
@@ -84,6 +96,7 @@ body {
     border-radius: 40px;
     font-size: 0.9rem;
 }
+
 .hero-details {
     margin-top: 2rem;
     display: flex;
@@ -93,6 +106,7 @@ body {
     font-size: 0.9rem;
     color: #999;
 }
+
 .hero-scroll {
     position: absolute;
     bottom: 2rem;
@@ -101,11 +115,19 @@ body {
     animation: bounce 2s infinite;
     font-size: 0.8rem;
     opacity: 0.7;
+    white-space: nowrap;
+    background: rgba(0,0,0,0.3);
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
 }
+
 @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
 }
+
+/* ========== ОБЩИЕ СЕКЦИИ ========== */
 .section-light, .section-dark { padding: 4rem 1.5rem; }
 .section-light { background: #0f0f25; }
 .section-dark { background: #080814; }
@@ -120,6 +142,8 @@ h2 {
     color: transparent;
 }
 h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+
+/* about grid */
 .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -137,9 +161,10 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .about-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .about-card ul { padding-left: 1.2rem; line-height: 1.6; }
 
+/* pipeline */
 .pipeline-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 .step {
@@ -148,6 +173,9 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
     padding: 1.5rem;
     border-left: 3px solid #00f5ff;
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .step-number {
     font-size: 2.5rem;
@@ -160,10 +188,12 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
     line-height: 1;
 }
 .step-title { font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0; }
-.step-desc { color: #bbb; font-size: 0.9rem; margin-bottom: 1rem; }
+.step-desc { color: #bbb; font-size: 0.9rem; margin-bottom: 1rem; min-height: 65px; }
+
+/* slider (карусели) */
 .slider {
     position: relative;
-    margin-top: 1rem;
+    margin-top: auto;
     background: rgba(0,0,0,0.3);
     border-radius: 20px;
     padding: 8px;
@@ -171,7 +201,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .slider-container {
     position: relative;
     width: 100%;
-    min-height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,6 +247,7 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 }
 .dot.active { background-color: #00f5ff; transform: scale(1.2); }
 
+/* технологии */
 .tech-grid {
     display: flex;
     flex-wrap: wrap;
@@ -236,27 +266,31 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .tech-item:hover { background: #2a2a5a; border-color: #00f5ff; }
 .tech-note { text-align: center; font-size: 0.8rem; opacity: 0.7; }
 
+/* ========== 3D-ДЕМОНСТРАЦИЯ ========== */
 .demo-section {
     background: #000;
-    padding: 2rem 0 0;
+    padding: 2rem 0 1rem;
 }
 .demo-header {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding: 0 1rem;
 }
 .demo-header h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
-.demo-header p { font-size: clamp(0.9rem, 3vw, 1rem); }
 .viewer-container {
     position: relative;
     width: 100%;
     height: 65vh;
-    min-height: 400px;
-    background: #050510;
+    min-height: 450px;
+    background: radial-gradient(circle at center, #14142b, #020210);
     overflow: hidden;
+    border-radius: 24px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 #canvas-container { width: 100%; height: 100%; }
 
+/* ===== ЛЕВАЯ ПАНЕЛЬ УПРАВЛЕНИЯ ===== */
 #ui {
     position: absolute;
     top: 20px;
@@ -286,8 +320,8 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
     color: transparent;
 }
 #ui .section {
-    margin-bottom: 8px;
-    padding-top: 6px;
+    margin-bottom: 12px;
+    padding-top: 8px;
     border-top: 1px solid rgba(0,245,255,0.2);
 }
 #ui .section-title { font-size: 13px; margin-bottom: 6px; font-weight: 600; }
@@ -310,42 +344,66 @@ button, .btn-switch, .btn-upload, .btn-small {
     transition: all 0.2s ease;
 }
 button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY(-2px); }
+
+/* Единая ширина для всех ползунков */
 #ui .slider-container {
-    min-height: auto !important;
-    margin: 0 0 4px 0 !important;
+    width: 100%;
+    margin: 8px 0;
 }
 #ui .slider-container label {
-    display: flex !important;
-    justify-content: space-between !important;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 0 !important;
-    padding: 0 !important;
     gap: 8px;
-    font-size: 13px !important;
+    margin-bottom: 4px;
+    font-size: 12px;
 }
 #ui .slider-container label span:first-child {
-    width: 100px;
+    width: 110px;
     flex-shrink: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 500;
 }
-#ui .slider-container .weight-value {
-    width: 45px;
-    flex-shrink: 0;
+.weight-value {
+    background: rgba(0,0,0,0.6);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-family: monospace;
+    font-size: 11px;
+    color: #ffcc88;
+    min-width: 40px;
     text-align: center;
-    font-weight: 600;
-    color: #ffaa66;
-    background: rgba(0,0,0,0.3);
-    padding: 0 6px;
-    border-radius: 10px;
-    font-size: 12px;
+    flex-shrink: 0;
 }
-#ui .slider-container input {
-    margin: 2px 0 0 0 !important;
-    width: 100% !important;
+#ui .slider-container input[type="range"] {
+    flex: 1;
+    margin: 0;
+    -webkit-appearance: none;
+    background: linear-gradient(90deg, #00f5ff, #ff6bcb);
+    height: 4px;
+    border-radius: 4px;
+    outline: none;
 }
-#ui .note { margin-top: 6px; font-size: 10px; opacity: 0.6; text-align: center; }
+#ui .slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    border: 1px solid #00f5ff;
+    cursor: pointer;
+    box-shadow: 0 0 4px #00f5ff;
+}
+#ui .note {
+    margin-top: 8px;
+    font-size: 10px;
+    opacity: 0.6;
+    text-align: center;
+}
+
+/* Кнопка сворачивания панели */
 #ui .collapse-btn {
     position: absolute;
     top: 12px;
@@ -353,9 +411,9 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
     background: rgba(0,0,0,0.5);
     border: none;
     color: #00f5ff;
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
+    width: 26px;
+    height: 26px;
+    border-radius: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -370,6 +428,7 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
 #ui.collapsed .slider-container, #ui.collapsed .note, #ui.collapsed .preset-buttons {
     display: none;
 }
+#ui.collapsed .collapse-btn { display: none; }
 #ui.collapsed::after {
     content: "▶";
     display: block;
@@ -379,8 +438,8 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
     margin-top: 10px;
     cursor: pointer;
 }
-#ui.collapsed .collapse-btn { display: none; }
 
+/* ===== ПРАВАЯ ПАНЕЛЬ ===== */
 #tech-panel {
     position: absolute;
     bottom: 20px;
@@ -402,6 +461,8 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
     font-size: 10px;
     line-height: 1.4;
 }
+
+/* ===== НИЖНЯЯ ПАНЕЛЬ БЫСТРЫХ ДЕЙСТВИЙ ===== */
 #quick-actions {
     position: absolute;
     bottom: 20px;
@@ -430,20 +491,35 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
 }
 #quick-actions button:hover { background: #2a4c7a; transform: translateY(-2px); }
 
+/* ===== МОБИЛЬНАЯ КНОПКА ===== */
+.mobile-menu-btn {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 200, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid #00f5ff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-weight: bold;
+    z-index: 210;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
 @media (max-width: 768px) {
-    #tech-panel, .navbar .nav-links, .demo-header { display: none; }
     .hero {
-        min-height: 70vh;
-        padding: 5rem 1rem 2rem;
+        padding: 8rem 1.5rem 5rem;
     }
-    .hero-content h1 {
-        font-size: clamp(1.6rem, 7vw, 2.4rem);
+    .hero-scroll {
+        bottom: 1.5rem;
     }
-    .viewer-container {
-        height: 100dvh;
-        min-height: 100dvh;
-    }
-    #canvas-container { width: 100%; height: 100%; }
+    #tech-panel { display: none; }
+    
+    /* Левая панель скрыта, открывается по кнопке */
     #ui {
         position: fixed;
         bottom: 0;
@@ -451,84 +527,93 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
         right: 0;
         top: auto;
         width: 100%;
-        max-height: 55vh;
-        background: rgba(10, 12, 26, 0.96);
-        backdrop-filter: blur(20px);
-        border-top: 2px solid #00f5ff;
-        border-radius: 20px 20px 0 0;
-        padding: 12px 12px 80px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        max-height: 60vh;
+        background: rgba(10, 12, 26, 0.98);
+        backdrop-filter: blur(24px);
+        border-radius: 28px 28px 0 0;
         z-index: 300;
-        box-shadow: 0 -4px 20px rgba(0, 245, 255, 0.2);
+        overflow-y: auto;
+        padding: 16px 20px;
+        transform: translateY(100%);
         transition: transform 0.3s ease;
+        border: none;
+        border-top: 2px solid #00f5ff;
     }
-    #ui.collapsed {
-        transform: translateY(calc(100% - 70px));
+    #ui.open {
+        transform: translateY(0);
     }
     #ui .collapse-btn {
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 6px;
-        background: rgba(255,255,255,0.4);
-        border-radius: 999px;
-        border: none;
-        z-index: 301;
+        display: none;
     }
-    #ui .section {
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(0,245,255,0.15);
+    /* Своя кнопка закрытия внутри панели (только на мобилках) */
+    .mobile-close-btn {
+        position: sticky;
+        top: 0;
+        background: #0f0f25;
+        display: block;
+        text-align: center;
+        padding: 8px;
+        margin: -12px -20px 12px -20px;
+        border-bottom: 1px solid rgba(0,245,255,0.3);
+        font-weight: bold;
+        color: #ff8888;
+        cursor: pointer;
+        z-index: 310;
     }
-    #ui .section:last-child { border-bottom: none; }
-    #ui button, #ui .btn-small, #ui .btn-upload {
-        font-size: 13px;
-        padding: 8px 14px;
-        min-height: 42px;
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
-    #ui .slider-container {
-        margin-bottom: 12px;
-    }
-    #ui .slider-container label {
-        font-size: 13px;
+    /* Увеличиваем высоту 3D-окна */
+    .viewer-container {
+        height: 80vh;
+        max-height: 600px;
+        min-height: 400px;
+        border-radius: 20px;
     }
     #quick-actions {
-        position: fixed;
-        bottom: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 310;
-        background: rgba(10, 12, 26, 0.95);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(0, 245, 255, 0.4);
-        border-radius: 50px;
-        padding: 8px;
-        gap: 6px;
+        bottom: 80px;
         flex-wrap: nowrap;
         overflow-x: auto;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        max-width: 96%;
+        justify-content: flex-start;
+        width: 90%;
+        padding: 6px 12px;
+        -webkit-overflow-scrolling: touch;
     }
     #quick-actions button {
-        font-size: 12.5px;
-        padding: 6px 12px;
-        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 11px;
     }
-    #ui input[type="range"] {
-        height: 6px;
+    .demo-section {
+        padding: 1rem 0 0;
     }
-    #ui input[type="range"]::-webkit-slider-thumb {
-        width: 20px;
-        height: 20px;
+    .demo-header {
+        margin-bottom: 0.5rem;
     }
-    .pipeline-steps, .about-grid {
+    .pipeline-steps {
         grid-template-columns: 1fr;
-        gap: 1.2rem;
     }
-    .step {
-        padding: 1.2rem;
+    .step-desc {
+        min-height: auto;
+    }
+    .navbar .nav-links {
+        display: none;
+    }
+    .logo span {
+        font-size: 0.9rem;
     }
 }
+
+.btn-github {
+    background: #1e1e3a;
+    padding: 0.7rem 1.5rem;
+    border-radius: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #00f5ff;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.btn-github:hover { background: #00f5ff22; box-shadow: 0 0 12px #00f5ff; }

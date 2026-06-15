@@ -196,7 +196,6 @@
     <section id="demo" class="demo-section">
         <div class="demo-header">
             <h2>Интерактивная демонстрация</h2>
-            <p>Управляйте эмоциями, анимациями, включайте отладку – проверьте подготовку персонажей в реальном времени</p>
         </div>
         <div class="viewer-container">
             <div id="canvas-container"></div>
@@ -278,6 +277,9 @@
                 <button id="reset-all">🔄 Сбросить всё</button>
                 <button id="auto-test">🤖 Автотест</button>
             </div>
+
+            <!-- КНОПКА ДЛЯ МОБИЛЬНОГО МЕНЮ (ОТКРЫТЬ/ЗАКРЫТЬ) -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">⚙️ Управление</button>
         </div>
     </section>
 
@@ -287,6 +289,7 @@
 
     <div id="loading-progress" style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.8); color:white; padding:10px 20px; border-radius:30px; z-index:200; font-weight:bold; display:none;">Загрузка: 0%</div>
 
+    <!-- Кнопка для вызова меню на телефонах (дубль, но оставим для совместимости) -->
     <script type="module" src="main.js"></script>
 </body>
 </html>
