@@ -625,12 +625,17 @@ function initMobileMenu() {
         uiPanelMobile.classList.toggle('open');
     });
     
-    // Добавляем крестик закрытия ТОЛЬКО на мобилках
+    // Добавляем кнопку закрытия (стрелка вниз) ТОЛЬКО на мобилках
     if (isMobile) {
-        if (!uiPanelMobile.querySelector('.mobile-close-btn')) {
-            const closeDiv = document.createElement('div');
+        let closeDiv = uiPanelMobile.querySelector('.mobile-close-btn');
+        if (!closeDiv) {
+            closeDiv = document.createElement('div');
             closeDiv.className = 'mobile-close-btn';
-            closeDiv.textContent = '✖ Закрыть';
+            // Добавляем невидимый span для доступности, но стили покажут только стрелку
+            const span = document.createElement('span');
+            span.textContent = 'Свернуть';
+            span.style.display = 'none';
+            closeDiv.appendChild(span);
             closeDiv.addEventListener('click', () => {
                 uiPanelMobile.classList.remove('open');
             });
@@ -639,7 +644,6 @@ function initMobileMenu() {
     } else {
         const existingClose = uiPanelMobile.querySelector('.mobile-close-btn');
         if (existingClose) existingClose.remove();
-        // На десктопе также убедимся, что панель не в "open" состоянии
         uiPanelMobile.classList.remove('open');
     }
 }

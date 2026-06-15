@@ -527,7 +527,7 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
         right: 0;
         top: auto;
         width: 100%;
-        max-height: 60vh;
+        max-height: 45vh;  /* было 60vh — уменьшили */
         background: rgba(10, 12, 26, 0.98);
         backdrop-filter: blur(24px);
         border-radius: 28px 28px 0 0;
@@ -545,7 +545,7 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
     #ui .collapse-btn {
         display: none;
     }
-    /* Своя кнопка закрытия внутри панели (только на мобилках) */
+    /* Своя кнопка закрытия — стрелка вниз */
     .mobile-close-btn {
         position: sticky;
         top: 0;
@@ -556,9 +556,16 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
         margin: -12px -20px 12px -20px;
         border-bottom: 1px solid rgba(0,245,255,0.3);
         font-weight: bold;
-        color: #ff8888;
+        font-size: 20px;
+        color: #00f5ff;
         cursor: pointer;
         z-index: 310;
+    }
+    .mobile-close-btn::before {
+        content: "▼";
+    }
+    .mobile-close-btn span {
+        display: none;
     }
     .mobile-menu-btn {
         display: flex;
