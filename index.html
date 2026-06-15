@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>3D Character Pipeline – ВКР Нигаматулина Д.В.</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/",
+                "gsap": "https://unpkg.com/gsap@3.12.5/index.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🎨<span>3D Character Pipeline</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#pipeline">Пайплайн</a></li>
+                <li><a href="#tech">Технологии</a></li>
+                <li><a href="#demo">Демонстрация</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Создание и техническая подготовка 3D-персонажей</h1>
+            <p>для использования в анимационных проектах</p>
+            <div class="hero-badge">Выпускная квалификационная работа бакалавра</div>
+            <div class="hero-details">
+                <span>📌 РГПУ им. А.И. Герцена</span>
+                <span>🎓 09.03.02 Информационные технологии в дизайне</span>
+                <span>👩‍🎓 Нигаматулина Дарина Вадимовна</span>
+            </div>
+        </div>
+        <div class="hero-scroll">↓ Прокрутите вниз ↓</div>
+    </section>
+
+    <section id="about" class="section-light">
+        <div class="container">
+            <h2>О выпускной квалификационной работе</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Цель</h3>
+                    <p>Разработать и апробировать сквозной пайплайн создания 3D-персонажа для анимационного проекта: от концепт-арта до интерактивного веб-сайта с возможностью переключения анимаций и управления эмоциями в реальном времени.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">📋</div>
+                    <h3>Задачи</h3>
+                    <ul>
+                        <li>Теоретический анализ требований к анимационным персонажам</li>
+                        <li>Создание двух персонажей по полному производственному циклу (моделирование, риггинг, текстуры, блендшейпы)</li>
+                        <li>Разработка веб-сайта на Three.js для интерактивной демонстрации</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🔍</div>
+                    <h3>Объект и предмет</h3>
+                    <p><strong>Объект:</strong> процесс создания и технической подготовки 3D-персонажей в анимационном производстве.<br>
+                    <strong>Предмет:</strong> методы и инструменты художественной и технической подготовки стилизованных 3D-персонажей.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">⚙️</div>
+                    <h3>Практическая значимость</h3>
+                    <p>Готовый методический пример сквозного пайплайна для учебных курсов, полноценное портфолио и открытый репозиторий с веб-инструментом проверки 3D-ассетов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pipeline" class="section-dark">
+        <div class="container">
+            <h2>Производственный пайплайн</h2>
+            <div class="pipeline-steps">
+                <!-- 01 Концепт-арт -->
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-title">Концепт-арт</div>
+                    <div class="step-desc">Krita: эскизы оленёнка и зайки, отработка силуэта и одежды</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/characters_cloth.png">
+                            <img class="slider-img" src="img/characters_cloth_profile.png">
+                            <img class="slider-img" src="img/characters.png">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <!-- 02 High/Low poly -->
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-title">High‑poly / Low‑poly</div>
+                    <div class="step-desc">Maya: блокинг, высокополигональная детализация, ретопология с чистыми петлями</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/blocking.png">
+                            <img class="slider-img" src="img/hight_poly.png">
+                            <img class="slider-img" src="img/low_poly.png">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <!-- 03 UV + Текстуры -->
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-title">UV + Текстуры</div>
+                    <div class="step-desc">RizomUV + Substance 3D Painter: PBR-материалы (4K лицо, 2K тело), швы скрыты</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/UV_deer.png">
+                            <img class="slider-img" src="img/UV_rabbit.png">
+                            <img class="slider-img" src="img/texturing.png">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <!-- 04 Риггинг и блендшейпы -->
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-title">Риггинг и блендшейпы</div>
+                    <div class="step-desc">68 костей, IK/FK, 42 контроллера, 12 морф-таргетов (эмоции, моргание)</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/rig.png">
+                            <img class="slider-img" src="img/blendshapes.jpg" alt="Блендшейпы лица" onerror="this.src='https://placehold.co/400x300/1e1e3a/white?text=Блендшейпы'">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <!-- 05 Тестовые анимации -->
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <div class="step-title">Тестовые анимации</div>
+                    <div class="step-desc">Idle, Walk, Hello – проверка деформаций и экспорт в GLB</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/walk_cycle.jpg" alt="Цикл ходьбы" onerror="this.src='https://placehold.co/400x300/1e1e3a/white?text=Ходьба'">
+                            <img class="slider-img" src="img/greeting.jpg" alt="Поза приветствия" onerror="this.src='https://placehold.co/400x300/1e1e3a/white?text=Hello'">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <!-- 06 Веб-интеграция -->
+                <div class="step">
+                    <div class="step-number">06</div>
+                    <div class="step-title">Веб-интеграция</div>
+                    <div class="step-desc">Three.js: загрузка моделей, переключение персонажей, управление эмоциями, тех. инструменты</div>
+                    <div class="slider">
+                        <div class="slider-container">
+                            <img class="slider-img" src="img/web_site.jpg" alt="Сайт с 3D" onerror="this.src='https://placehold.co/400x300/1e1e3a/white?text=Сайт'">
+                            <img class="slider-img" src="img/tools.jpg" alt="Инструменты проверки" onerror="this.src='https://placehold.co/400x300/1e1e3a/white?text=Инструменты'">
+                        </div>
+                        <button class="slider-prev">◀</button>
+                        <button class="slider-next">▶</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="section-light">
+        <div class="container">
+            <h2>Используемые технологии</h2>
+            <div class="tech-grid">
+                <div class="tech-item">Krita</div>
+                <div class="tech-item">Autodesk Maya</div>
+                <div class="tech-item">RizomUV</div>
+                <div class="tech-item">Substance 3D Painter</div>
+                <div class="tech-item">Three.js</div>
+                <div class="tech-item">GSAP</div>
+                <div class="tech-item">HTML5 / CSS3</div>
+                <div class="tech-item">GitHub Pages</div>
+            </div>
+            <div class="tech-note">* Все модели экспортированы в glTF 2.0 (GLB) с встроенными текстурами и морф-таргетами.</div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <div class="demo-header">
+            <h2>Интерактивная демонстрация</h2>
+            <p>Управляйте эмоциями, анимациями, включайте отладку – проверьте подготовку персонажей в реальном времени</p>
+        </div>
+        <div class="viewer-container">
+            <div id="canvas-container"></div>
+
+            <!-- ЛЕВАЯ ПАНЕЛЬ УПРАВЛЕНИЯ -->
+            <div id="ui">
+                <button class="collapse-btn" id="collapse-ui-btn">◀</button>
+                <h3>🛠️ Управление</h3>
+                <div class="button-group">
+                    <button id="switch-character">🔄 Переключить персонажа</button>
+                    <label for="upload-model" class="btn-upload">📁 Загрузить свою модель</label>
+                    <input type="file" id="upload-model" accept=".glb,.gltf" style="display:none">
+                </div>
+
+                <!-- Анимации -->
+                <div class="section">
+                    <div class="section-title">🏃 Анимации</div>
+                    <div class="preset-buttons">
+                        <button id="anim-idle">Idle</button>
+                        <button id="anim-walk">Walk</button>
+                        <button id="anim-hello">Hello</button>
+                    </div>
+                    <div class="slider-container">
+                        <label>⏩ Скорость <span id="speed-val">1.00</span></label>
+                        <input type="range" id="anim-speed" min="0" max="2" step="0.01" value="1">
+                    </div>
+                </div>
+
+                <!-- Дополнительные блендшейпы -->
+                <div class="section" id="extra-morphs-section">
+                    <div class="section-title">🎭 Доп. блендшейпы</div>
+                    <div id="extra-morphs-container"></div>
+                </div>
+
+                <!-- Доп. инструменты (скриншот, сброс камеры, скачать модель) -->
+                <div class="section">
+                    <div class="section-title">📸 Утилиты</div>
+                    <div class="button-group">
+                        <button id="screenshot-btn" class="btn-small">📸 Скриншот</button>
+                        <button id="reset-camera-btn" class="btn-small">🎥 Сброс камеры</button>
+                        <button id="download-model-btn" class="btn-small">💾 Скачать модель</button>
+                    </div>
+                </div>
+
+                <!-- Доп. технические инструменты -->
+                <div class="section">
+                    <div class="section-title">🛠️ Тех. инструменты</div>
+                    <div class="button-group">
+                        <button id="wireframe-btn" class="btn-small">🔲 Каркас</button>
+                        <button id="skeleton-btn" class="btn-small">🦴 Скелет</button>
+                        <button id="uv-checker-btn" class="btn-small">🔲 UV Checker</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">💡 Освещение</div>
+                    <div class="preset-buttons">
+                        <button id="light-studio" class="btn-small">Студия</button>
+                        <button id="light-day" class="btn-small">Яркий день</button>
+                        <button id="light-back" class="btn-small">Контражур</button>
+                    </div>
+                </div>
+                <div class="note" id="info-message">Загрузка модели...</div>
+            </div>
+
+            <!-- ПРАВАЯ ПАНЕЛЬ ТЕХНИЧЕСКИХ ДАННЫХ -->
+            <div id="tech-panel">
+                <h4>📊 Технические параметры</h4>
+                <div id="tech-stats">—</div>
+            </div>
+
+            <!-- НИЖНЯЯ ЦЕНТРАЛЬНАЯ ПАНЕЛЬ (быстрые эмоции + сброс + автотест) -->
+            <div id="quick-actions">
+                <button id="emotion-neutral">😐 Нейтрал</button>
+                <button id="emotion-happy">😊 Счастье</button>
+                <button id="emotion-sad">😔 Грусть</button>
+                <button id="emotion-angry">😠 Гнев</button>
+                <button id="emotion-surprise">😲 Удивление</button>
+                <button id="reset-all">🔄 Сбросить всё</button>
+                <button id="auto-test">🤖 Автотест</button>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align: center; padding: 2rem 0 3rem; background: #080814;">
+        <a href="https://github.com/Daarinaa/Daarinaa.github.io" target="_blank" class="btn-github">📂 Исходный код на GitHub</a>
+    </div>
+
+    <div id="loading-progress" style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.8); color:white; padding:10px 20px; border-radius:30px; z-index:200; font-weight:bold; display:none;">Загрузка: 0%</div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
