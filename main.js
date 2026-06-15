@@ -3,7 +3,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from 'gsap';
 
-// --- СЦЕНА ---
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
 
@@ -24,7 +23,6 @@ controls.dampingFactor = 0.05;
 controls.target.set(0, -0.5, 0);
 controls.update();
 
-// --- ОСВЕЩЕНИЕ (умеренно-светлое, мягкое) ---
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
 scene.add(ambientLight);
 
@@ -91,7 +89,6 @@ gridHelper.material.transparent = true;
 gridHelper.material.opacity = 0.35;
 scene.add(gridHelper);
 
-// --- ПАНОРАМНЫЙ ФОН ---
 const textureLoader = new THREE.TextureLoader();
 const panoramaTexture = textureLoader.load('panorama.jpg');
 const skyGeometry = new THREE.SphereGeometry(1000, 64, 64);
@@ -102,7 +99,6 @@ const skyMaterial = new THREE.MeshBasicMaterial({
 const skySphere = new THREE.Mesh(skyGeometry, skyMaterial);
 scene.add(skySphere);
 
-// --- ПЕРЕМЕННЫЕ ---
 let currentModel = null;
 let mixer = null;
 let actions = {};
@@ -116,7 +112,6 @@ let currentSkeletonHelper = null;
 let uvCheckerActive = false;
 let originalMaterials = new Map();
 
-// --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 function countPolygonsAndVertices(model) {
     let triangles = 0, vertices = 0;
     model.traverse(child => {
@@ -131,7 +126,6 @@ function countPolygonsAndVertices(model) {
     });
     return { triangles, vertices };
 }
-
 function countBones(model) {
     let skeleton = null;
     model.traverse(child => {
@@ -139,7 +133,6 @@ function countBones(model) {
     });
     return skeleton ? skeleton.bones.length : 0;
 }
-
 function updateTechStats() {
     if (!currentModel) return;
     const stats = countPolygonsAndVertices(currentModel);
@@ -157,7 +150,6 @@ function updateTechStats() {
     `;
 }
 
-// --- УПРАВЛЕНИЕ БЛЕНДШЕЙПАМИ ---
 function setMorphWeightByName(morphName, weight, duration = 0.2) {
     if (!meshesWithMorphs.length) return;
     meshesWithMorphs.forEach(mesh => {
@@ -170,7 +162,6 @@ function setMorphWeightByName(morphName, weight, duration = 0.2) {
         }
     });
 }
-
 function resetAllMorphs() {
     if (!meshesWithMorphs.length) return;
     meshesWithMorphs.forEach(mesh => {
@@ -193,24 +184,20 @@ function resetAllMorphs() {
         setAnimationSpeed(1);
     }
 }
-
 function emotionNeutral() {
     if (!meshesWithMorphs.length) return;
     resetAllMorphs();
     setMorphWeightByName('neutral', 1.0, 0.25);
 }
-
 function setEmotionByName(emotionName, value = 1.0) {
     resetAllMorphs();
     setMorphWeightByName(emotionName, value, 0.25);
 }
-
 function emotionHappy()   { setEmotionByName('happy', 1.0); }
 function emotionAngry()   { setEmotionByName('angry', 1.0); }
 function emotionSad()     { setEmotionByName('sad', 1.0); }
 function emotionSurprise(){ setEmotionByName('surprise', 1.0); }
 
-// --- АВТОТЕСТ ---
 let testTimer = null;
 function autoTestBlendshapes() {
     if (testTimer) {
@@ -238,7 +225,6 @@ function autoTestBlendshapes() {
     testTimer = setTimeout(() => {}, 99999);
 }
 
-// --- АНИМАЦИИ ---
 function playAnimationByKeyword(keyword) {
     if (!mixer || !Object.keys(actions).length) return;
     const matchedName = Object.keys(actions).find(name =>
@@ -251,13 +237,11 @@ function playAnimationByKeyword(keyword) {
     if (activeAction) activeAction.crossFadeTo(newAction, 0.3, true);
     activeAction = newAction;
 }
-
 function setAnimationSpeed(speed) {
     if (mixer) mixer.timeScale = speed;
     document.getElementById('speed-val').innerText = speed.toFixed(2);
 }
 
-// --- ИНСТРУМЕНТЫ ---
 function toggleWireframe() {
     wireframeMode = !wireframeMode;
     currentModel?.traverse(child => { if (child.isMesh) child.material.wireframe = wireframeMode; });
@@ -312,7 +296,6 @@ function toggleUVChecker() {
     }
 }
 
-// --- КАМЕРА И СКРИНШОТ ---
 function resetCamera() {
     camera.position.set(0, 0.8, 4.5);
     controls.target.set(0, -0.5, 0);
@@ -326,7 +309,6 @@ function takeScreenshot() {
     link.click();
 }
 
-// --- СКАЧИВАНИЕ МОДЕЛИ ---
 function downloadCurrentModel() {
     if (currentGLBBlob) {
         const url = URL.createObjectURL(currentGLBBlob);
@@ -352,7 +334,6 @@ function downloadCurrentModel() {
         alert('Модель не загружена');
     }
 }
-
 function clearCurrentCharacter() {
     if (currentModel) scene.remove(currentModel);
     if (mixer) mixer.stopAllAction();
@@ -371,19 +352,15 @@ function clearCurrentCharacter() {
     updateTechStats();
 }
 
-// --- ЗАГРУЗКА МОДЕЛИ ---
 const loader = new GLTFLoader();
 const progressDiv = document.getElementById('loading-progress');
-
 function loadCharacterFromURL(url, blobForDownload = null) {
     clearCurrentCharacter();
     currentGLBUrl = url;
     currentGLBBlob = blobForDownload;
-
     if (!blobForDownload && url && !url.startsWith('blob:')) {
         fetch(url).then(res => res.blob()).then(blob => { currentGLBBlob = blob; }).catch(e => console.warn('Blob fetch error', e));
     }
-
     progressDiv.style.display = 'block';
     loader.load(url, (gltf) => {
         currentModel = gltf.scene;
@@ -396,7 +373,6 @@ function loadCharacterFromURL(url, blobForDownload = null) {
         });
         currentModel.scale.set(1, 1, 1);
         currentModel.position.y = -1;
-
         if (gltf.animations.length) {
             mixer = new THREE.AnimationMixer(currentModel);
             gltf.animations.forEach(clip => { actions[clip.name] = mixer.clipAction(clip); console.log(`Анимация: ${clip.name}`); });
@@ -406,23 +382,18 @@ function loadCharacterFromURL(url, blobForDownload = null) {
                 playAnimationByKeyword('idle');
             }
         }
-
         const uniqueNames = new Set();
         meshesWithMorphs.forEach(mesh => {
             if (mesh.morphTargetDictionary) Object.keys(mesh.morphTargetDictionary).forEach(n => uniqueNames.add(n));
         });
         morphNames = Array.from(uniqueNames).sort();
         console.log('Блендшейпы (имена):', morphNames);
-
         resetAllMorphs();
         emotionNeutral();
-
         rebuildExtraMorphs();
-
         updateTechStats();
         document.getElementById('info-message').innerHTML = `✅ Загружено. Морфов: ${morphNames.length}, анимаций: ${Object.keys(actions).length}`;
         progressDiv.style.display = 'none';
-
         updateSwitchButtonText();
     }, (xhr) => {
         const percent = Math.round(xhr.loaded / xhr.total * 100);
@@ -435,28 +406,23 @@ function loadCharacterFromURL(url, blobForDownload = null) {
     });
 }
 
-// --- ДОПОЛНИТЕЛЬНЫЕ БЛЕНДШЕЙПЫ ---
 function rebuildExtraMorphs() {
     const container = document.getElementById('extra-morphs-container');
     if (!container) return;
     container.innerHTML = '';
     if (!meshesWithMorphs.length) return;
-
     const allMorphs = new Set();
     meshesWithMorphs.forEach(mesh => {
         if (mesh.morphTargetDictionary) {
             Object.keys(mesh.morphTargetDictionary).forEach(name => allMorphs.add(name));
         }
     });
-
     const exclude = new Set(['neutral', 'blendShape1', 'happy', 'sad', 'angry', 'surprise']);
     const extra = Array.from(allMorphs).filter(name => !exclude.has(name)).sort();
-
     if (extra.length === 0) {
         container.innerHTML = '<div class="note">Нет дополнительных блендшейпов</div>';
         return;
     }
-
     extra.forEach(name => {
         const wrapper = document.createElement('div');
         wrapper.className = 'slider-container';
@@ -484,7 +450,6 @@ function rebuildExtraMorphs() {
         container.appendChild(wrapper);
     });
 }
-
 function setupFileUpload() {
     const input = document.getElementById('upload-model');
     input.addEventListener('change', e => {
@@ -495,65 +460,36 @@ function setupFileUpload() {
         loadCharacterFromURL(url, file);
     });
 }
-
 const characterUrls = ['./models/deer.glb', './models/rabbit.glb'];
 const characterNames = ['Оленёнок', 'Зайка'];
 let currentCharacterIndex = 0;
-
 function updateSwitchButtonText() {
     const switchBtn = document.getElementById('switch-character');
     if (!switchBtn) return;
     const nextIndex = (currentCharacterIndex + 1) % characterUrls.length;
     switchBtn.textContent = `🔄 ${characterNames[nextIndex]}`;
 }
-
 function switchCharacter() {
     currentCharacterIndex = (currentCharacterIndex + 1) % characterUrls.length;
     loadCharacterFromURL(characterUrls[currentCharacterIndex], null);
 }
 
-function showTutorialOnce() {
-    const tutorial = document.getElementById('tutorial');
-    const closeBtn = document.getElementById('close-tutorial');
-    if (!tutorial) return;
-    const alreadyShown = localStorage.getItem('tutorialShown');
-    if (!alreadyShown) {
-        tutorial.style.display = 'flex';
-        closeBtn.onclick = () => {
-            tutorial.style.display = 'none';
-            localStorage.setItem('tutorialShown', 'true');
-        };
-        setTimeout(() => {
-            if (tutorial.style.display === 'flex') {
-                tutorial.style.display = 'none';
-                localStorage.setItem('tutorialShown', 'true');
-            }
-        }, 10000);
-    }
-}
-
-// --- ПРИВЯЗКА UI ---
 function bindUI() {
     document.getElementById('switch-character').addEventListener('click', switchCharacter);
     setupFileUpload();
-
     document.getElementById('auto-test').addEventListener('click', autoTestBlendshapes);
     document.getElementById('reset-all').addEventListener('click', resetAllMorphs);
-
     document.getElementById('anim-idle').addEventListener('click', () => playAnimationByKeyword('idle'));
     document.getElementById('anim-walk').addEventListener('click', () => playAnimationByKeyword('walk'));
     document.getElementById('anim-hello').addEventListener('click', () => playAnimationByKeyword('hello'));
     document.getElementById('anim-speed').addEventListener('input', e => setAnimationSpeed(parseFloat(e.target.value)));
-
     document.getElementById('wireframe-btn').addEventListener('click', toggleWireframe);
     document.getElementById('skeleton-btn').addEventListener('click', toggleSkeleton);
     document.getElementById('uv-checker-btn').addEventListener('click', toggleUVChecker);
     document.getElementById('download-model-btn').addEventListener('click', downloadCurrentModel);
-
     document.getElementById('light-studio').addEventListener('click', setStudioLighting);
     document.getElementById('light-day').addEventListener('click', setDayLighting);
     document.getElementById('light-back').addEventListener('click', setBackLighting);
-
     document.getElementById('emotion-neutral').addEventListener('click', emotionNeutral);
     document.getElementById('emotion-happy').addEventListener('click', emotionHappy);
     document.getElementById('emotion-sad').addEventListener('click', emotionSad);
@@ -561,9 +497,18 @@ function bindUI() {
     document.getElementById('emotion-surprise').addEventListener('click', emotionSurprise);
     document.getElementById('reset-camera-btn').addEventListener('click', resetCamera);
     document.getElementById('screenshot-btn').addEventListener('click', takeScreenshot);
-
     updateSwitchButtonText();
-    showTutorialOnce();
+}
+
+const uiPanel = document.getElementById('ui');
+const collapseBtn = document.getElementById('collapse-ui-btn');
+if (collapseBtn && uiPanel) {
+    collapseBtn.addEventListener('click', () => {
+        uiPanel.classList.toggle('collapsed');
+    });
+    if (window.innerWidth <= 768) {
+        uiPanel.classList.add('collapsed');
+    }
 }
 
 let clock = new THREE.Clock();
@@ -575,25 +520,8 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
-
 bindUI();
 loadCharacterFromURL(characterUrls[0], null);
-
-// --- СВОРАЧИВАНИЕ ЛЕВОЙ ПАНЕЛИ ---
-const uiPanel = document.getElementById('ui');
-const collapseBtn = document.getElementById('collapse-ui-btn');
-if (collapseBtn && uiPanel) {
-    collapseBtn.addEventListener('click', () => {
-        uiPanel.classList.toggle('collapsed');
-        collapseBtn.textContent = uiPanel.classList.contains('collapsed') ? '▶' : '◀';
-    });
-    uiPanel.addEventListener('click', (e) => {
-        if (uiPanel.classList.contains('collapsed') && e.target === uiPanel) {
-            uiPanel.classList.remove('collapsed');
-            collapseBtn.textContent = '◀';
-        }
-    });
-}
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -601,7 +529,6 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// --- СЛАЙДЕРЫ ДЛЯ ПАЙПЛАЙНА ---
 function initPipelineSliders() {
     const sliders = document.querySelectorAll('.step .slider');
     sliders.forEach(slider => {
@@ -639,35 +566,6 @@ function initPipelineSliders() {
         if (nextBtn) nextBtn.onclick = () => showSlide(current + 1);
         showSlide(0);
     });
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const uiPanel = document.getElementById('ui');
-    const techPanel = document.getElementById('tech-panel');
-    const overlay = document.getElementById('menu-overlay');
-
-    function closeMobileMenu() {
-        if (uiPanel) uiPanel.classList.remove('active');
-        if (techPanel) techPanel.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
-    }
-
-    function openMobileMenu() {
-        if (uiPanel) uiPanel.classList.add('active');
-        // если хотите показывать и техпанель – раскомментируйте
-        // if (techPanel) techPanel.classList.add('active');
-        if (overlay) overlay.classList.add('active');
-    }
-
-    if (mobileBtn) {
-        mobileBtn.addEventListener('click', openMobileMenu);
-    }
-    if (overlay) {
-        overlay.addEventListener('click', closeMobileMenu);
-    }
-    // Закрыть при нажатии Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMobileMenu();
-    });
 }
-
 window.addEventListener('DOMContentLoaded', initPipelineSliders);
 setTimeout(initPipelineSliders, 100);

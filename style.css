@@ -1,19 +1,14 @@
-/* style.css - мобильная версия с выезжающей панелью */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
     background: #0a0a1f;
     color: #e0e0ff;
     overflow-x: hidden;
 }
-
-/* ========== НАВИГАЦИЯ (десктоп) ========== */
 .navbar {
     position: fixed;
     top: 0;
@@ -48,7 +43,6 @@ body {
 .nav-links a { color: #ccc; text-decoration: none; font-weight: 500; transition: 0.2s; }
 .nav-links a:hover { color: #00f5ff; text-shadow: 0 0 5px #00f5ff; }
 
-/* ========== HERO (десктоп) ========== */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -112,8 +106,6 @@ body {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(8px); }
 }
-
-/* ========== ОБЩИЕ СЕКЦИИ ========== */
 .section-light, .section-dark { padding: 4rem 1.5rem; }
 .section-light { background: #0f0f25; }
 .section-dark { background: #080814; }
@@ -128,8 +120,6 @@ h2 {
     color: transparent;
 }
 h3 { font-size: 1.4rem; margin-bottom: 1rem; }
-
-/* Карточки about */
 .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -147,7 +137,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .about-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .about-card ul { padding-left: 1.2rem; line-height: 1.6; }
 
-/* ========== ПАЙПЛАЙН ========== */
 .pipeline-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -172,8 +161,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 }
 .step-title { font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0; }
 .step-desc { color: #bbb; font-size: 0.9rem; margin-bottom: 1rem; }
-
-/* карусели */
 .slider {
     position: relative;
     margin-top: 1rem;
@@ -231,7 +218,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 }
 .dot.active { background-color: #00f5ff; transform: scale(1.2); }
 
-/* ========== ТЕХНОЛОГИИ ========== */
 .tech-grid {
     display: flex;
     flex-wrap: wrap;
@@ -250,7 +236,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .tech-item:hover { background: #2a2a5a; border-color: #00f5ff; }
 .tech-note { text-align: center; font-size: 0.8rem; opacity: 0.7; }
 
-/* ========== 3D-ДЕМОНСТРАЦИЯ ========== */
 .demo-section {
     background: #000;
     padding: 2rem 0 0;
@@ -272,7 +257,6 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 }
 #canvas-container { width: 100%; height: 100%; }
 
-/* ===== ЛЕВАЯ ПАНЕЛЬ УПРАВЛЕНИЯ (десктоп) ===== */
 #ui {
     position: absolute;
     top: 20px;
@@ -287,6 +271,7 @@ h3 { font-size: 1.4rem; margin-bottom: 1rem; }
     overflow-y: auto;
     z-index: 200;
     font-size: 13px;
+    transition: all 0.3s ease;
 }
 #ui::-webkit-scrollbar { width: 5px; }
 #ui::-webkit-scrollbar-track { background: #1e1e3a; border-radius: 10px; }
@@ -325,8 +310,6 @@ button, .btn-switch, .btn-upload, .btn-small {
     transition: all 0.2s ease;
 }
 button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY(-2px); }
-
-/* Компактные ползунки */
 #ui .slider-container {
     min-height: auto !important;
     margin: 0 0 4px 0 !important;
@@ -398,7 +381,6 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
 }
 #ui.collapsed .collapse-btn { display: none; }
 
-/* ===== ПРАВАЯ ПАНЕЛЬ ТЕХНИЧЕСКИХ ДАННЫХ (десктоп) ===== */
 #tech-panel {
     position: absolute;
     bottom: 20px;
@@ -420,8 +402,6 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
     font-size: 10px;
     line-height: 1.4;
 }
-
-/* ===== НИЖНЯЯ ПАНЕЛЬ (десктоп) ===== */
 #quick-actions {
     position: absolute;
     bottom: 20px;
@@ -450,185 +430,105 @@ button:hover { background: #2a4c7a; border-color: #00f5ff; transform: translateY
 }
 #quick-actions button:hover { background: #2a4c7a; transform: translateY(-2px); }
 
-/* ===== РЕЗУЛЬТАТЫ ===== */
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-}
-.result-card {
-    background: #111122;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid #2a2a4a;
-}
-.result-card img { width: 100%; height: 150px; object-fit: cover; }
-.result-card h4 { padding: 0.8rem; text-align: center; font-size: 1rem; }
-.links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin: 2rem 0 1rem;
-    flex-wrap: wrap;
-}
-.btn-github {
-    background: #1e1e3a;
-    padding: 0.7rem 1.5rem;
-    border-radius: 40px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border: 1px solid #00f5ff;
-    font-size: 0.9rem;
-}
-.btn-github:hover { background: #00f5ff22; box-shadow: 0 0 12px #00f5ff; }
-
-/* ========== МОБИЛЬНАЯ ВЕРСИЯ (выезжающая панель) ========== */
 @media (max-width: 768px) {
-    /* Скрываем правую панель (тех. параметры) на телефонах – слишком много места */
-    #tech-panel {
-        display: none;
+    #tech-panel, .navbar .nav-links, .demo-header { display: none; }
+    .hero {
+        min-height: 70vh;
+        padding: 5rem 1rem 2rem;
     }
-    
-    /* Левая панель: уменьшаем, размещаем внизу, делаем компактной и прокручиваемой по горизонтали */
+    .hero-content h1 {
+        font-size: clamp(1.6rem, 7vw, 2.4rem);
+    }
+    .viewer-container {
+        height: 100dvh;
+        min-height: 100dvh;
+    }
+    #canvas-container { width: 100%; height: 100%; }
     #ui {
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-        right: 10px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         top: auto;
-        width: auto;
-        max-height: 45%;
-        min-height: 120px;
-        background: rgba(10, 12, 26, 0.95);
+        width: 100%;
+        max-height: 55vh;
+        background: rgba(10, 12, 26, 0.96);
         backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 8px 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 16px;
-        z-index: 200;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        /* Включаем горизонтальную прокрутку */
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
+        border-top: 2px solid #00f5ff;
+        border-radius: 20px 20px 0 0;
+        padding: 12px 12px 80px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 300;
+        box-shadow: 0 -4px 20px rgba(0, 245, 255, 0.2);
+        transition: transform 0.3s ease;
     }
-    /* Каждый блок внутри панели – в строку */
+    #ui.collapsed {
+        transform: translateY(calc(100% - 70px));
+    }
+    #ui .collapse-btn {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 6px;
+        background: rgba(255,255,255,0.4);
+        border-radius: 999px;
+        border: none;
+        z-index: 301;
+    }
     #ui .section {
-        display: inline-block;
-        vertical-align: top;
-        width: auto;
-        min-width: 140px;
-        margin: 0;
-        padding: 0 8px 0 0;
-        border-top: none;
-        border-right: 1px solid rgba(0,245,255,0.3);
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0,245,255,0.15);
     }
-    #ui .section:last-child {
-        border-right: none;
-    }
-    #ui .section-title {
-        font-size: 11px;
-        margin-bottom: 4px;
-    }
-    #ui .button-group, #ui .preset-buttons {
-        flex-wrap: nowrap;
-        gap: 6px;
-        margin-bottom: 4px;
-    }
-    #ui button, #ui .btn-small, #ui .btn-switch, #ui .btn-upload {
-        font-size: 10px;
-        padding: 4px 8px;
-        white-space: nowrap;
+    #ui .section:last-child { border-bottom: none; }
+    #ui button, #ui .btn-small, #ui .btn-upload {
+        font-size: 13px;
+        padding: 8px 14px;
+        min-height: 42px;
     }
     #ui .slider-container {
-        min-width: 120px;
-        margin-bottom: 4px;
+        margin-bottom: 12px;
     }
     #ui .slider-container label {
-        font-size: 10px !important;
-        gap: 4px;
+        font-size: 13px;
     }
-    #ui .slider-container label span:first-child {
-        width: 60px;
-        font-size: 10px;
-    }
-    #ui .slider-container .weight-value {
-        width: 32px;
-        font-size: 9px;
-        padding: 0 2px;
-    }
-    #ui .slider-container input {
-        height: 4px;
-    }
-    /* Кнопка сворачивания левой панели на телефонах не нужна, убираем */
-    #ui .collapse-btn {
-        display: none;
-    }
-    /* Левая панель в свёрнутом состоянии на телефонах не используется */
-    
-    /* Нижняя панель быстрых эмоций – уменьшаем и размещаем над левой панелью */
     #quick-actions {
-        position: absolute;
-        bottom: auto;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        transform: none;
-        background: rgba(10, 12, 26, 0.85);
+        position: fixed;
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 310;
+        background: rgba(10, 12, 26, 0.95);
         backdrop-filter: blur(16px);
-        border-radius: 40px;
-        padding: 6px 12px;
-        gap: 8px;
+        border: 1px solid rgba(0, 245, 255, 0.4);
+        border-radius: 50px;
+        padding: 8px;
+        gap: 6px;
         flex-wrap: nowrap;
         overflow-x: auto;
-        justify-content: flex-start;
-        width: auto;
-        max-width: none;
-        z-index: 201;
-        -webkit-overflow-scrolling: touch;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        max-width: 96%;
     }
     #quick-actions button {
-        font-size: 11px;
-        padding: 5px 10px;
-        white-space: nowrap;
+        font-size: 12.5px;
+        padding: 6px 12px;
+        flex-shrink: 0;
     }
-    
-    /* Увеличиваем область 3D-вьювера, убираем лишние отступы */
-    .viewer-container {
-        height: 100vh;
-        min-height: 100%;
-        position: relative;
-        padding: 0;
+    #ui input[type="range"] {
+        height: 6px;
     }
-    .demo-section {
-        padding-top: 0;
-    }
-    .demo-header {
-        display: none; /* заголовок секции на телефоне скрываем, чтобы не занимал место */
-    }
-    
-    /* Навигация и прочие секции скрывать не нужно, они остаются */
-    .navbar .nav-links {
-        display: none;
-    }
-    .hero {
-        padding: 4rem 1rem 2rem;
-        min-height: auto;
-    }
-    .hero-details {
-        gap: 1rem;
-        font-size: 0.8rem;
-    }
-    .section-light, .section-dark {
-        padding: 2rem 1rem;
+    #ui input[type="range"]::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
     }
     .pipeline-steps, .about-grid {
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    .step {
+        padding: 1.2rem;
     }
 }
